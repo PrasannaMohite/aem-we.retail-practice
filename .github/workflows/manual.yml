@@ -1,21 +1,2 @@
 name: My Manual Worklfow
 
-on:
-  workflow_run:
-    workflows:
-      - 'Manual Trigger'
-    types:
-      - manual
-
-jobs:
-  deploy:
-    runs-on: ubuntu-latest
-
-    steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
-
-    - name: Deploy
-      run: |
-        echo "Deploying tag: ${{ github.event.inputs.tag }}"
-        echo "To environment: ${{ github.event.inputs.environment }}"
