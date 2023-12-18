@@ -1,13 +1,17 @@
 name: My workflow
 
 on:
-  workflow_run:
-    types: ["manual"]
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "The tag to use for this workflow run."
+        required: true
 
 jobs:
   build:
     steps:
-      - name: Check for tag parameter
-        if: env.TAG
-        run: echo "Tag used: ${{ env.TAG }}"
-      # other steps based on the presence of TAG...
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          ref: refs/tags/${{ inputs.tag }}
+      # other steps using the tag...
