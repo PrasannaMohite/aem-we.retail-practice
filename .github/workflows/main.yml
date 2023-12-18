@@ -27,7 +27,7 @@ jobs:
     - name: check
       run: |
         project_name=${{ inputs.tag }}
-        echo "Deploying tag: "${project_name%$-*}
+        echo "Deploying tag: "${project_name%-*}
         echo "To environment: ${{ inputs.environment }}"
         echo "here are the details : " ${{ github.ref }}
         echo "Selected Branch" ${{ github.ref_name }}
