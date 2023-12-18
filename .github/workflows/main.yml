@@ -24,7 +24,7 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v3
 
-    - name: Deploy
+    - name: check
       run: |
         project_name=$(echo ${{ inputs.tag }} | cut -d'-' -f1)
         echo "Deploying tag: $project_name"
@@ -32,3 +32,11 @@ jobs:
         echo "here are the details : " ${{ github.ref }}
         echo "Selected Branch" ${{ github.ref_name }}
         echo "Selected type "${{ github.ref_type }}
+    - name: tag-check
+      run: |
+        if [[ $GITHUB_SHA =~ ^refs/tags/(.*) ]]; then
+          echo "Tag used: $BASH_REMATCH[1]"
+        else
+          echo "Not triggered by a tag"
+        fi
+
