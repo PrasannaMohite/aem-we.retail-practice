@@ -29,6 +29,6 @@ jobs:
         project_name=$(echo ${{ inputs.tag }} | cut -d'-' -f1)
         echo "Deploying tag: $project_name"
         echo "To environment: ${{ inputs.environment }}"
-        echo "here are the details : "
+        echo "here are the details : " ${{ github.ref }}
         echo "Selected Branch" ${{ github.ref_name }}
         echo "Selected type "${{ github.ref_type }}
