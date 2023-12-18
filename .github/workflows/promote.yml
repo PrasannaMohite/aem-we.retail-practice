@@ -17,3 +17,9 @@ jobs:
         env:
           ref: ${{ github.ref_name }}
           ref_type: ${{ github.ref_type }}
+      - name: Access from previous step
+        id: accessibility-check
+        shell: bash
+        run: |
+          echo "Hello -> ${ref}"
+        
