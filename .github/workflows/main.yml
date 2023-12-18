@@ -6,11 +6,14 @@ on:
       tag:
         description: 'Tag for deployment'
         required: true
-        default: 'v1.0.0' # You can set a default value or remove it
       environment:
         description: 'Environment for deployment'
         required: true
-        default: 'production' # You can set a default value or remove it
+        options:
+            - LOCAL
+            - DEV
+            - UAT
+            - PPE
 
 jobs:
   deploy:
@@ -22,5 +25,5 @@ jobs:
 
     - name: Deploy
       run: |
-        echo "Deploying tag: ${{ inputs.tag }}"
+        echo "Deploying tag: ${{ inputs.tag | grep -oE '^[^-]+') }}"
         echo "To environment: ${{ inputs.environment }}"
