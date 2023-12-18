@@ -13,7 +13,7 @@ jobs:
         id:  show-tag
         shell: bash
         run: |
-          echo "::notice:: selected {ref_type} : ${ref}"
+          echo "::notice:: selected ${ref_type} : ${ref}"
         env:
           ref: ${{ github.ref_name }}
           ref_type: ${{ github.ref_type }}
