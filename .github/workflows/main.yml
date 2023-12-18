@@ -32,6 +32,8 @@ jobs:
         echo "here are the details : " ${{ github.ref }}
         echo "Selected Branch" ${{ github.ref_name }}
         echo "Selected type "${{ github.ref_type }}
+        if [[ ${{github.ref_type}} == "branch"]]
+          echo "branch not alowed" && exit 1
     - name: tag-check
       run: |
         if [[ $GITHUB_SHA =~ ^refs/tags/(.*) ]]; then
