@@ -1,32 +1,21 @@
-name: Deploy App based on Tag and Environment
+name: My Workflow
 
 on:
-  workflow_dispatch:
-    inputs:
-      tag:
-        description: "The tag to deploy."
-        required: true
-      environment:
-        description: "The environment to deploy to."
-        type: choice
-        required: true
-        options:
-          - staging
-          - production
+  workflow_run:
+    workflows:
+      - 'Manual Trigger'
+    types:
+      - manual
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-        with:
-          ref: refs/tags/${{ inputs.tag }}
-      - name: Configure environment variables
-        run: |
-          echo "ENVIRONMENT=${{ inputs.environment }}" >> .env
-      - name: Build application
-        # ... build steps based on your project ...
-      - name: Deploy application
-        # ... deploy steps based on your environment ...
 
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Deploy
+      run: |
+        echo "Deploying tag: ${{ github.event.inputs.tag }}"
+        echo "To environment: ${{ github.event.inputs.environment }}"
