@@ -1,0 +1,19 @@
+name: Promote V2
+on:
+  workflow_dispatch
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: 'main'
+
+      - name: Show tag
+        id:  show-tag
+        shell: bash
+        run: |
+          echo "::notice:: selected {ref_type} : ${ref}"
+        env:
+          ref: ${{ github.ref_name }}
+          ref_type: ${{ github.ref_type }}
