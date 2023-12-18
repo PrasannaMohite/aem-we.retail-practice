@@ -27,5 +27,5 @@ jobs:
     - name: Deploy
       run: |
         project_name=$(echo ${{ inputs.tag }} | cut -d'-' -f1)
-        echo "Deploying tag: $project_name
+        echo "Deploying tag: $project_name"
         echo "To environment: ${{ inputs.environment }}"
