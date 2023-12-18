@@ -1,0 +1,17 @@
+name: My workflow
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "The tag to use for this workflow run."
+        required: true
+
+jobs:
+  build:
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          ref: refs/tags/${{ inputs.tag }}
+      # other steps using the tag...
