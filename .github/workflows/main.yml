@@ -9,6 +9,7 @@ on:
       environment:
         description: 'Environment for deployment'
         required: true
+        type: choice
         options:
             - LOCAL
             - DEV
@@ -25,5 +26,5 @@ jobs:
 
     - name: Deploy
       run: |
-        echo "Deploying tag: ${{ inputs.tag }} $(echo "${inputs.tag}" | grep -oE '^[^-]+')"
+        echo "Deploying tag: ${{ inputs.tag }} $(echo "${inputs.tag}" | cut -d'-' -f1)"
         echo "To environment: ${{ inputs.environment }}"
